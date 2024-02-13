@@ -1,2 +1,1 @@
-# Charging
-Riley Yuasa
+# Charging Station Management System
