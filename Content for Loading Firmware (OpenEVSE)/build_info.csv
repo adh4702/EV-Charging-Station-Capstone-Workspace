@@ -1,0 +1,9 @@
+"arduino_version","bss_size","built_tool","data_size","gcc_version","hex_size","name","text_size","total_size"
+"1.8.3",751,"Platform IO",580,"avr-gcc (GCC) 7.3.0",83346,"openevse_latest",29042,30373
+"1.6.15",776,"Arduino",616,"avr-gcc (GCC) 4.9.2",89187,"openevse_arduino_1-6-15",31088,32480
+"1.8.3",759,"Platform IO",586,"avr-gcc (GCC) 7.3.0",82781,"openevse_eu",28838,30183
+"1.8.3",763,"Platform IO",610,"avr-gcc (GCC) 7.3.0",83530,"emonevse",29078,30451
+"1.8.3",772,"Arduino",624,"avr-gcc (GCC) 7.3.0",87870,"openevse_arduino_1-8-3",30610,32006
+"1.8.3",751,"Platform IO",580,"avr-gcc (GCC) 7.3.0",83346,"openevse",29042,30373
+"1.6.23",772,"Arduino",634,"avr-gcc (GCC) 5.4.0",88688,"openevse_arduino_1-6-23",30892,32298
+"1.8.3",751,"Platform IO",580,"avr-gcc (GCC) 7.3.0",83346,"openevse_1-8-3",29042,30373

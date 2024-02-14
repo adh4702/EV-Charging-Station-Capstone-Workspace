@@ -1,0 +1,90 @@
+[
+  {
+    "name": "openevse_latest",
+    "built_tool": "Platform IO",
+    "arduino_version": "1.8.3",
+    "gcc_version": "avr-gcc (GCC) 7.3.0",
+    "hex_size": 83346,
+    "text_size": 29042,
+    "data_size": 580,
+    "bss_size": 751,
+    "total_size": 30373
+  },
+  {
+    "name": "openevse_arduino_1-6-15",
+    "built_tool": "Arduino",
+    "arduino_version": "1.6.15",
+    "gcc_version": "avr-gcc (GCC) 4.9.2",
+    "hex_size": 89187,
+    "text_size": 31088,
+    "data_size": 616,
+    "bss_size": 776,
+    "total_size": 32480
+  },
+  {
+    "name": "openevse_eu",
+    "built_tool": "Platform IO",
+    "arduino_version": "1.8.3",
+    "gcc_version": "avr-gcc (GCC) 7.3.0",
+    "hex_size": 82781,
+    "text_size": 28838,
+    "data_size": 586,
+    "bss_size": 759,
+    "total_size": 30183
+  },
+  {
+    "name": "emonevse",
+    "built_tool": "Platform IO",
+    "arduino_version": "1.8.3",
+    "gcc_version": "avr-gcc (GCC) 7.3.0",
+    "hex_size": 83530,
+    "text_size": 29078,
+    "data_size": 610,
+    "bss_size": 763,
+    "total_size": 30451
+  },
+  {
+    "name": "openevse_arduino_1-8-3",
+    "built_tool": "Arduino",
+    "arduino_version": "1.8.3",
+    "gcc_version": "avr-gcc (GCC) 7.3.0",
+    "hex_size": 87870,
+    "text_size": 30610,
+    "data_size": 624,
+    "bss_size": 772,
+    "total_size": 32006
+  },
+  {
+    "name": "openevse",
+    "built_tool": "Platform IO",
+    "arduino_version": "1.8.3",
+    "gcc_version": "avr-gcc (GCC) 7.3.0",
+    "hex_size": 83346,
+    "text_size": 29042,
+    "data_size": 580,
+    "bss_size": 751,
+    "total_size": 30373
+  },
+  {
+    "name": "openevse_arduino_1-6-23",
+    "built_tool": "Arduino",
+    "arduino_version": "1.6.23",
+    "gcc_version": "avr-gcc (GCC) 5.4.0",
+    "hex_size": 88688,
+    "text_size": 30892,
+    "data_size": 634,
+    "bss_size": 772,
+    "total_size": 32298
+  },
+  {
+    "name": "openevse_1-8-3",
+    "built_tool": "Platform IO",
+    "arduino_version": "1.8.3",
+    "gcc_version": "avr-gcc (GCC) 7.3.0",
+    "hex_size": 83346,
+    "text_size": 29042,
+    "data_size": 580,
+    "bss_size": 751,
+    "total_size": 30373
+  }
+]
