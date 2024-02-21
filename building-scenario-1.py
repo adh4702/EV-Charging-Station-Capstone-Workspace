@@ -1,6 +1,6 @@
 # Possible code solution for building scenario 1
 
-from ocpp.v201 import ChargePoint as chp
+from ocpp.v201 import ChargePoint as cp
 import asyncio
 import pandas as pd
 import numpy as np
@@ -12,23 +12,32 @@ import numpy as np
 
 '''''''''''''''''''''
 Assume these values while we develop our initial implementation:
-Max transformer output = 50kWh
-    Buffer amount (to ensure to overages) = 10kWh
+Max transformer output = 50kWh (artificial constraint for us to work with)
+    Buffer amount (to ensure to overages)(20% of max transformer) = 10kWh (buffer incase connected systems/devices 
+    get connected during 15-min polling time (i.e. preventing explosion))
     The buffer is because we don't want to reach the transformer's maximum. So we want to pretend
-    like we have 
-Avg EV consumption during charging = 7.2 kWh (per charger, assume 4 chargers)
-Max consumption = 40kWh => 50kWh - 40kWh = 10kWh (available)
-Avg consumption = 25kWh => 50kWh - 25kWh = 25kWh (available)
-Min consumption = 10kWh => 50kWh - 10kWh = 40kWh (available)
+    like we have 10kWh less available
 
-If the expected building power consumption is 25kWh, there is 25kWh available to power up 3 chargers at 7.2kwH.
-Total Building Power - Building Consumption = EV Power Available
+Ideas so far (don't need to worry about this right now, this is for later): 
+    buffer should be 2 standard deviations worth of power
+    scenario 1 should use 2 sds for determining meter failure
+
+
+GENERAL CASE logic
+Buffer = 10kWh (20% of transformer capacity)
+Avg EV consumption during charging = 7.2 kWh (level 2 charger @ 240V, 40A)
+Max consumption = 40kWh => 50kWh - 40kWh - buffer = 0kWh available
+Avg consumption = 20kWh => 50kWh - 20kWh - buffer = 20kWh available
+Min consumption = 8kWh => 50kWh - 8kWh - buffer = 32kWh available
+
+If the expected building power consumption is 25kWh, there is 15kWh available (minus buffer) to power up a charger at 7.2kwH.
+Total Building Power - Building Consumption - buffer = EV Power Available
 
 Transformer output > building consumption + ev consumption 
 '''''''''''''''''''''
 
 '''
-The building energy usage is acting unusual – it is much lower than normal for this time period and does 
+The building energy usage is acting unusual - it is much lower than normal for this time period and does 
 not appear to be changing much. Is there a data issue with the meter where it may be frozen or not reporting 
 accurate data? What happens if the meter is under reporting the actual usage of the building for a period?
 
@@ -45,23 +54,5 @@ general case will handle if its above
 '''
 
 
-''' GENERAL CASE: increase power usage as building conmsupmtion decreases vice versa'''  
+''' GENERAL CASE pseudocode: increase power usage as building conmsupmtion decreases vice versa'''  
 
-
-def check_total_power(building_power, car_charger_power, max_total_power=50):
-    total_power = building_power + car_charger_power
-
-    if total_power > max_total_power:
-        print(f"Warning: Total power consumption ({total_power} kWh) exceeds the maximum limit ({max_total_power} kWh). Adjust charging schedules.")
-
-    remaining_power = max_total_power - building_power
-    if remaining_power < 0:
-        remaining_power = 0  # Avoid negative values if the building power already exceeds the limit
-
-    print(f"Remaining available power: {remaining_power} kWh")
-# User input section
-building_power_consumption = float(input("Enter building power consumption (kWh): "))
-car_charger_power_consumption = float(input("Enter car charger power consumption (kWh): "))
-
-
-check_total_power(building_power_consumption, car_charger_power_consumption)
