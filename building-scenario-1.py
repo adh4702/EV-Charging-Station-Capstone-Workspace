@@ -5,9 +5,21 @@ import asyncio
 import pandas as pd
 import numpy as np
 
+doc = pd.read_excel('SchmitzData.xlsx', sheet_name = 0)
+print(doc)
 
-#doc = pd.read_excel('SchmitzData.xlsx', sheet_name = 0)
-#print(doc)
+
+column_c_values = doc.iloc[3:37971, 2] 
+
+sum_of_values = column_c_values.sum()
+average_of_values = column_c_values.mean()
+
+min_value = column_c_values.min()
+max_value = column_c_values.max()
+
+print("Average building power consumption (kWh):", average_of_values)
+print("Minimum building power consumption(kWh):", min_value)
+print("Maximum building power consumption(kWh):", max_value)
 
 
 '''''''''''''''''''''
