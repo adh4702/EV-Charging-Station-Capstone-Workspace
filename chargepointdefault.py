@@ -17,7 +17,7 @@ class ChargePoint(cp):
             charging_station={
                 'model': 'Wallbox XYZ',
                 'vendor_name': 'anewone'
-            },
+            }
             reason="PowerUp"
         )
         response = await self.call(request)
