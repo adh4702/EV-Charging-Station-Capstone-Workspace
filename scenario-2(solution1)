@@ -1,0 +1,66 @@
+import datetime
+import json
+
+# Constants
+TARGET_SOC = 80  # Target State of Charge in percentage
+CHARGE_INCREASE_RATE = 10  # Percentage to increase charging rate
+TARGET_TIME = datetime.datetime.now().replace(hour=6, minute=0, second=0, microsecond=0)
+DAYLIGHT_SAVINGS_JUMP = datetime.timedelta(hours=1)  # Adjust for daylight savings
+
+# Example function to simulate sending OCPP messages to a charging station
+def send_ocpp_message(message_type, payload):
+    message = json.dumps({
+        "messageTypeId": message_type,
+        "uniqueId": "1234",
+        "action": payload["action"],
+        "payload": payload["data"]
+    })
+    print(f"Sending OCPP message: {message}")
+    # This function would actually send the message to the charging station in a real implementation
+    # Here we're just printing the message for demonstration purposes
+
+# Example function to simulate receiving OCPP messages from a charging station
+def receive_ocpp_message():
+    # In a real implementation, this function would listen for messages from the charging station
+    # Here we're just simulating a response
+    simulated_response = json.dumps({
+        "currentSOC": 50,  # Simulated SOC value
+        "timestamp": datetime.datetime.now().isoformat()
+    })
+    print(f"Received OCPP message: {simulated_response}")
+    return json.loads(simulated_response)
+
+# Main charging logic
+def adjust_charging_rate_for_daylight_savings():
+    start_time = datetime.datetime.now().replace(hour=21, minute=0)  # Example start time at 9 PM
+    while datetime.datetime.now() < TARGET_TIME:
+        current_time = datetime.datetime.now()
+        if current_time.hour == 2 and current_time.minute < 30:  # Simulate the daylight savings time jump
+            start_time -= DAYLIGHT_SAVINGS_JUMP  # Adjust start time to simulate losing an hour
+            
+        charging_status = receive_ocpp_message()  # Simulate receiving a message with the current SOC
+        current_soc = charging_status["currentSOC"]
+        
+        # Logic to calculate and adjust the charging rate based on current SOC
+        time_left_until_target = (TARGET_TIME - current_time).seconds / 3600  # Time left in hours
+        soc_needed = TARGET_SOC - current_soc
+        charge_rate_adjustment = (soc_needed / time_left_until_target) * CHARGE_INCREASE_RATE
+        
+        # Simulate sending a command to adjust the charging rate
+        send_ocpp_message(2, {
+            "action": "ChangeConfiguration",
+            "data": {
+                "key": "ChargingRate",
+                "value": str(charge_rate_adjustment)
+            }
+        })
+        
+        if current_soc >= TARGET_SOC:
+            print("Target SOC reached. Stopping charge.")
+            break  # Exit loop if target SOC is reached
+        
+        # Wait for a bit before next adjustment check (in real implementation, this would be event-driven)
+        time.sleep(15 * 60)  # Simulate waiting for 15 minutes
+
+# Simulate the charging process adjustment for daylight savings
+adjust_charging_rate_for_daylight_savings()
